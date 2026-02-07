@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
       { tipo: "video", src: "media/videos/oso9.mp4" },
       { tipo: "video", src: "media/videos/oso10.mp4"},
       { tipo: "video", src: "media/videos/oso11.mp4"},      
-      { tipo: "video", src: "media/videos/oso12.mp4"},
-  };
+      { tipo: "video", src: "media/videos/oso12.mp4"}
+ ] };
 
   /* ===== ESTADO ===== */
   let categoriaActual = null;
