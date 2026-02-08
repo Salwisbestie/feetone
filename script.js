@@ -22,9 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
  ] };
 
   /* ===== ESTADO ===== */
-  let categoriaActual = null;
-  let primeraVez = true;
-  let zIndex = 10;
+let categoriaActual = null;
+let primeraVez = true;
+let zIndex = 10;
+let popupsActivos = []; 
 
   /* ===== ELEMENTOS ===== */
   const selector = document.getElementById("selector");
@@ -68,9 +69,13 @@ btn.addEventListener("click", () => {
         // En móviles, play() debe llamarse inmediatamente en el click
         bgVideo.play().catch(e => console.log("Error video:", e));
         bgAudio.play().catch(e => console.log("Error audio:", e));
+        btn.style.opacity = "0.5"; 
         primeraVez = false;
     }
-
+  if (popupsActivos.length >= 4) {
+        const viejo = popupsActivos.shift(); // Saca el primero de la lista (el más antiguo)
+        if (viejo) viejo.remove(); // Lo elimina del DOM
+    }
     const lista = libreria[categoriaActual];
     const elegido = lista[Math.floor(Math.random() * lista.length)];
 
@@ -119,10 +124,12 @@ popup.style.height = popupHeight + "px";
 
     popup.querySelector(".close").onclick = e => {
         e.stopPropagation();
+popupsActivos = popupsActivos.filter(p => p !== popup);
         popup.remove();
     };
 
     popupZone.appendChild(popup);
+popupsActivos.push(popup);
 });
 
 });
